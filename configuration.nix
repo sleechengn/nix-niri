@@ -71,6 +71,17 @@
   };
 
   programs.niri.enable = true;
+  
+  #services.greetd = {
+  #  enable = true;
+  #  settings = {
+  #    default_session = {
+  #      command = "${config.programs.niri.package}/bin/niri-session";
+  #      user = "sa";
+  #    };
+  #  };
+  #};
+
   security.polkit.enable = true; # polkit
   services.gnome.gnome-keyring.enable = true;
   programs.waybar.enable = true;
@@ -125,7 +136,7 @@
     fastfetch
     vlc 
     git virt-viewer
-	alacritty fuzzel swaylock mako swayidle ghostty
+    xwayland-satellite alacritty fuzzel swaylock mako swayidle ghostty
   ];
   # 允许安装未开源/未自由分发的软件
   nixpkgs.config.allowUnfree = true;
