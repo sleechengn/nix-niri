@@ -69,7 +69,7 @@
       fcitx5-gtk             # GTK 应用程序支持
     ];
   };
-
+  services.getty.autologinUser = "sa";
   programs.niri.enable = true;
   
   #services.greetd = {
