@@ -23,6 +23,6 @@
       set -g default-command fish
     '';
   };
-  xdg.configFile."niri/config.kdl".source = ./config.kdl;
+  #xdg.configFile."niri/config.kdl".source = ./config.kdl;
   home.stateVersion = "26.05";
 }
