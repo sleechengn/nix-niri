@@ -71,7 +71,23 @@
   };
   services.getty.autologinUser = "sa";
   programs.niri.enable = true;
-  
+  # 文件管理器
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs; [
+      thunar-volman
+      thunar-archive-plugin
+    ];
+  };
+
+  # 给文件管理器提供预览缩略图的服务
+  services.tumbler.enable = true;
+
+  # polkit agent
+  security.soteria.enable = true;
+
+  # 磁盘挂载
+  services.gvfs.enable = true;  
   #services.greetd = {
   #  enable = true;
   #  settings = {

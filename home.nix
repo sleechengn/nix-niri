@@ -24,5 +24,9 @@
     '';
   };
   #xdg.configFile."niri/config.kdl".source = ./config.kdl;
+  xdg.configFile."niri/config.kdl" = {
+    source = ./config.kdl;
+    force = true;
+  };
   home.stateVersion = "26.05";
 }
