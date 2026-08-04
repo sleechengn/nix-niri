@@ -142,7 +142,7 @@
   users.extraUsers.root = {
     shell = pkgs.fish;
   };
-  services.xsettingsd.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -154,11 +154,13 @@
 #    gnome-tweaks
     microsoft-edge
     fastfetch
-    vlc xsettingsd
+    vlc
     git virt-viewer
     pavucontrol xwayland-satellite alacritty fuzzel swaylock mako swayidle ghostty
   ];
+
   # 允许安装未开源/未自由分发的软件
+  
   nixpkgs.config.allowUnfree = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
