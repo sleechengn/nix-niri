@@ -105,6 +105,9 @@
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.pki.certificateFiles = [
+    "/mnt/certs/ca.crt"
+  ];
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -145,14 +148,15 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    
     tmux
 #    qq
-    gnome-tweaks
+#    gnome-tweaks
     microsoft-edge
     fastfetch
     vlc 
     git virt-viewer
-    xwayland-satellite alacritty fuzzel swaylock mako swayidle ghostty
+    pavucontrol xwayland-satellite alacritty fuzzel swaylock mako swayidle ghostty
   ];
   # 允许安装未开源/未自由分发的软件
   nixpkgs.config.allowUnfree = true;
