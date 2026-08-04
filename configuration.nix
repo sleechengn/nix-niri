@@ -142,7 +142,7 @@
   users.extraUsers.root = {
     shell = pkgs.fish;
   };
-
+  services.xsettingsd.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -154,7 +154,7 @@
 #    gnome-tweaks
     microsoft-edge
     fastfetch
-    vlc 
+    vlc xsettingsd
     git virt-viewer
     pavucontrol xwayland-satellite alacritty fuzzel swaylock mako swayidle ghostty
   ];
