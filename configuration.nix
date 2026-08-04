@@ -154,7 +154,7 @@
 #    gnome-tweaks
     microsoft-edge
     fastfetch
-    vlc
+    vlc bibata-cursors
     git virt-viewer
     pavucontrol xwayland-satellite alacritty fuzzel swaylock mako swayidle ghostty
   ];

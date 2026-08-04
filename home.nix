@@ -13,7 +13,10 @@
       extend-height = false;
     };
   };
-
+  home.sessionVariables = {  # <- 修正为 home.sessionVariables
+    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_SIZE = "24";
+  };
   programs.tmux = {
     enable = true;
     # 直接在此处写入原本写在 .tmux.conf 里的内容
