@@ -106,7 +106,7 @@
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   security.pki.certificateFiles = [
-    "/mnt/certs/ca.crt"
+    "/etc/nixos/ca/ca.crt"
   ];
   services.pipewire = {
     enable = true;
