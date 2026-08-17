@@ -49,7 +49,7 @@
       set -g default-command fish
     '';
   };
-  services.xsettingsd.enable = true;
+  #services.xsettingsd.enable = true;
   xdg.configFile."niri/config.kdl" = {
     source = ./config.kdl;
     force = true;
