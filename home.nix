@@ -4,18 +4,41 @@
   # 注意修改这里的用户名与用户目录
   home.username = "sa";
   home.homeDirectory = "/home/sa";
-  home.packages = with pkgs; [ gnomeExtensions.dash-to-dock ];
-  dconf.settings = {
-    "org/gnome/shell".enabled-extensions = [ "dash-to-dock@micxgx.gmail.com" "ding@rastersoft.com" ];
-    "org/gnome/shell".disable-user-extensions = false;
-    "org/gnome/shell/extensions/dash-to-dock" = {
-      dock-position = "BOTTOM";
-      extend-height = false;
+  home.packages = with pkgs; [ ];
+  
+  gtk = {
+    enable = true;
+    
+    # GTK 主题（以 Catppuccin 为例）
+    theme = {
+      name = "Catppuccin-Mocha-Standard-Lavender-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "lavender" ];
+        size = "standard";
+        variant = "mocha";
+      };
+    };
+
+    # 图标主题
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    # 光标主题
+    cursorTheme = {
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+      size = 24;
     };
   };
-  home.sessionVariables = {  # <- 修正为 home.sessionVariables
-    XCURSOR_THEME = "Bibata-Modern-Classic";
-    XCURSOR_SIZE = "24";
+
+  # 设置 XCursor 指针全局生效
+  home.pointerCursor = {
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
   };
   programs.tmux = {
     enable = true;
@@ -27,7 +50,6 @@
     '';
   };
   services.xsettingsd.enable = true;
-  #xdg.configFile."niri/config.kdl".source = ./config.kdl;
   xdg.configFile."niri/config.kdl" = {
     source = ./config.kdl;
     force = true;
