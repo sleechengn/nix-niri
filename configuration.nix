@@ -88,15 +88,15 @@
 
   # 磁盘挂载
   services.gvfs.enable = true;  
-  #services.greetd = {
-  #  enable = true;
-  #  settings = {
-  #    default_session = {
-  #      command = "${config.programs.niri.package}/bin/niri-session";
-  #      user = "sa";
-  #    };
-  #  };
-  #};
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${config.programs.niri.package}/bin/niri-session";
+        user = "sa";
+      };
+    };
+  };
 
   security.polkit.enable = true; # polkit
   services.gnome.gnome-keyring.enable = true;
