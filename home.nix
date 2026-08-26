@@ -4,42 +4,64 @@
   # 注意修改这里的用户名与用户目录
   home.username = "sa";
   home.homeDirectory = "/home/sa";
-  home.packages = with pkgs; [ ];
   
+  dconf.enable = true;
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      gtk-theme = "Adwaita-dark";
+      icon-theme = "Adwaita";
+      cursor-theme = "Adwaita";
+    };
+  };
+
   gtk = {
     enable = true;
-    
-    # GTK 主题（以 Catppuccin 为例）
+
     theme = {
-      name = "Catppuccin-Mocha-Standard-Lavender-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "lavender" ];
-        size = "standard";
-        variant = "mocha";
-      };
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
     };
 
-    # 图标主题
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
     };
 
-    # 光标主题
     cursorTheme = {
-      name = "Bibata-Modern-Ice";
-      package = pkgs.bibata-cursors;
-      size = 24;
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 
-  # 设置 XCursor 指针全局生效
-  home.pointerCursor = {
-    name = "Bibata-Modern-Ice";
-    package = pkgs.bibata-cursors;
-    size = 24;
-    gtk.enable = true;
+  home.packages = with pkgs; [
+    dconf
+    glib
+    gsettings-desktop-schemas
+    xdg-desktop-portal-gtk
+  ];
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+
+    config.common = {
+      default = "gtk";
+      "org.freedesktop.impl.portal.Settings" = "gtk";
+    };
   };
+
   programs.tmux = {
     enable = true;
     # 直接在此处写入原本写在 .tmux.conf 里的内容
@@ -49,7 +71,6 @@
       set -g default-command fish
     '';
   };
-  #services.xsettingsd.enable = true;
   xdg.configFile."niri/config.kdl" = {
     source = ./config.kdl;
     force = true;
